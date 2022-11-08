@@ -1,0 +1,11 @@
+http://problemkaputt.de/psx-spx.htm#cpuspecifications
+2.27 The coprocessors page 32
+
+pas sur des calcules dans interconnect pour les addresses
+bon ok jai menti camarche pas.
+
+bizzarement laddresse est ok mais le range a un start a null pour le ramsize
+
+Je suis trop mort pour continuer ce soir
+
+desole pour le debug demain
