@@ -9,10 +9,10 @@ LIBDIR		:= lib
 INCDIR		:= include
 
 #Files
-FILES		= bios cpu interconnect range instruction opcode register main
+FILES		= bios cpu interconnect range instruction opcode register utils ram main
 SRCS		= $(addprefix $(SRCDIR)/, $(addsuffix .c, $(FILES)))
 OBJS		= $(addprefix $(OBJDIR)/, $(addsuffix .o, $(FILES)))
-INCS		= bios cpu interconnect instruction opcode register range
+INCS		= bios cpu interconnect range instruction opcode register utils ram
 
 #Tools
 CC			= gcc

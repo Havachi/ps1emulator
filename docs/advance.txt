@@ -1,11 +1,21 @@
-http://problemkaputt.de/psx-spx.htm#cpuspecifications
-2.27 The coprocessors page 32
+page 46 JAL
 
-pas sur des calcules dans interconnect pour les addresses
-bon ok jai menti camarche pas.
+Bon la c'est tordu
 
-bizzarement laddresse est ok mais le range a un start a null pour le ramsize
+En gros a l'adresse @bfc01a70 il y a un JAL qui
 
-Je suis trop mort pour continuer ce soir
+puis a @bfc039a4, donc 7 instruction plus tard, il y a un jr qui amenne a @bfc01a78, 8 bits apres le JAL initial
 
-desole pour le debug demain
+Je sais pas si cest le bon comportement de cette instruction.
+
+mais apres cela le code boucle entre @bfc01a80 et @bfc01a7c entre 2 jr a l'infini
+
+la boucle:
+
+Instruction @bfc01a80 -> 03e00008       jr $31
+Instruction @bfc01a84 -> 00000000       sll $0, $0, 0x00000000
+Instruction @bfc01a78 -> 8fbf0014       lw: Ignoring store while cache is isolated
+Instruction @bfc01a7c -> 27bd0018       addiu $29, $29, 0x00000018
+Instruction @bfc01a80 -> 03e00008       jr $31
+
+J'ai chercher un moment, mais je n'ai plus assez de puissance mental pour continuer.

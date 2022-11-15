@@ -21,3 +21,4 @@ docs/advance.txt
 !.vscode/*.code-snippets
 .history/
 *.vsix
+logs.txt

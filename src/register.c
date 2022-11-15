@@ -1,18 +1,20 @@
 #include "register.h"
 
-reg_t	*new_register(reg_t *reg, uint32_t init_value)
-{
-	reg = malloc(sizeof(*reg));
-	reg->value = init_value;
-	return reg;
-}
-reg_t	**init_registers(uint32_t init_value)
+
+reg_t		**init_registers(uint32_t init_value, int n)
 {
 	int i;
 	reg_t **registers;
-	registers = malloc(sizeof(*registers)*32);
+
+	if(n < 1)
+	{
+		fprintf(stderr, "Error: Number of registers must be greater than 0, everybody know that\n");
+		exit(1);
+	}
+
+	registers = malloc(sizeof(*registers)*n);
 	i = 0;
-	while(i < 32){
+	while(i < n){
 		if(i == 0)
 			registers[i] = new_register(registers[i], 0x0);
 		else
@@ -26,14 +28,21 @@ reg_t	**init_registers(uint32_t init_value)
 	return (registers);
 }
 
-uint32_t read_register(int index, reg_t **registers)
+uint32_t	read_register(reg_t *reg)
 {
-	return registers[index]->value;
+	return (reg->value);
 }
 
-reg_t **write_register(int index, uint32_t value, reg_t **registers)
+void		write_register(reg_t *reg, uint32_t value)
 {
-	registers[index]->value = value;
-	registers[0]->value = 0;
-	return registers;
+	reg->value = value;
+}
+
+reg_t		*new_register(reg_t *reg, uint32_t init_value)
+{
+	reg = malloc(sizeof(*reg));
+	reg->value = init_value;
+	reg->write = write_register;
+	reg->read = read_register;
+	return reg;
 }
